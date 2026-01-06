@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "rootDir": "./src",
+    "rootDir": ".",
     "outDir": "./dist",
 
     "module": "nodenext",
@@ -36,6 +36,8 @@
     "moduleDetection": "force",
     "skipLibCheck": true
   },
+
+  "include": ["src/**/*", "migrations/**/*"],
 
   "ts-node": {
     "esm": true

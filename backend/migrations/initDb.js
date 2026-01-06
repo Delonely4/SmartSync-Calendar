@@ -1,15 +1,15 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
-import { pool } from "../config/db.js";
-import { logger } from "../utils/loggerUtils.js";
+import { pool } from "../src/database/db.js";
+import { logger } from "../src/utils/loggerUtils.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const initDb = async () => {
   try {
-    const sqlPath = path.join(__dirname, "../../database/init.sql");
+    const sqlPath = path.join(__dirname, "./init.sql");
     const sql = fs.readFileSync(sqlPath, "utf8");
 
     logger.info("Reading initialization SQL script...");
