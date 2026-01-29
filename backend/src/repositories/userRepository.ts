@@ -1,5 +1,5 @@
 import { pool } from "../database/db.js";
-import type { IUser } from "../models/userInterface.js";
+import type { IUser } from "../types/userInterface.js";
 
 export const userRepository = {
   async upsertUser(user: IUser): Promise<IUser> {

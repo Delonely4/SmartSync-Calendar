@@ -3,8 +3,6 @@ import { config } from "./config/config.js";
 import { pool } from "./database/db.js";
 import { logger } from "./utils/loggerUtils.js";
 
-const bot = new Telegraf(config.BOT_TOKEN);
-
 bot.start((ctx) => {
   ctx.reply("Привет! Я готов к работе. А ты?");
   logger.info(`User started the bot ${ctx.from.id}`);

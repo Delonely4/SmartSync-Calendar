@@ -1,5 +1,5 @@
 import { userRepository } from "../repositories/userRepository.js";
-import type { IUser } from "../models/userInterface.js";
+import type { IUser } from "../types/userInterface.js";
 import { logger } from "../utils/loggerUtils.js";
 
 export const userService = {
