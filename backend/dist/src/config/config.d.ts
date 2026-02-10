@@ -7,4 +7,3 @@ export declare const config: {
     DB_PASSWORD: string;
     NODE_ENV: string;
 };
-//# sourceMappingURL=config.d.ts.map
