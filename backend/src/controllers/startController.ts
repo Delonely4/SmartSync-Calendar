@@ -1,12 +1,13 @@
 import { Context } from "telegraf";
+import { logger } from "../utils/loggerUtils.js";
 
 export const startController = async (ctx: Context) => {
   try {
     const name = ctx.from?.first_name || "User";
-    await ctx.reply(`Привет, ${name}! Бот работает.`);
-    // await saveUser(ctx.from);
+    await ctx.reply(`Hi ${name}! I'm your SmartSync Calendar Bot.`);
+    logger.info(`User started the bot ${ctx.from?.id}`);
   } catch (error) {
-    console.error("Error in start command", error);
-    await ctx.reply("Что-то пошло не так.");
+    logger.error("Error in start command", error);
+    await ctx.reply("Something went wrong.");
   }
 };

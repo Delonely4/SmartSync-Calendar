@@ -2,13 +2,11 @@ import { bot } from "./bot/bot.js";
 import { setupControllers } from "./controllers/root.js";
 import { pool } from "./database/db.js";
 import { logger } from "./utils/loggerUtils.js";
+import { startOAuthServer } from "./server/oauthServer.js";
 
-bot.start((ctx) => {
-  ctx.reply("Привет! Я готов к работе. А ты?");
-  if (ctx.from) {
-    logger.info(`User started the bot ${ctx.from.id}`);
-  }
-});
+startOAuthServer();
+
+setupControllers(bot);
 
 const startBot = async () => {
   try {
