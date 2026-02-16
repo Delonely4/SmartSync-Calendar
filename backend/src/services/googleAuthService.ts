@@ -16,7 +16,7 @@ export const googleAuthService = {
       access_type: 'offline',
       scope: [
         'https://www.googleapis.com/auth/calendar',
-        'ttps://www.googleapis.com/auth/calendar.events'
+        'https://www.googleapis.com/auth/calendar.events'
       ],
       state: telegramId.toString(),
       prompt: 'consent',

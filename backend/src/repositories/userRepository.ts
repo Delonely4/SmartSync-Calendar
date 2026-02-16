@@ -19,4 +19,13 @@ export const userRepository = {
     const res = await pool.query(query, [telegramId]);
     return res.rows[0] || null;
   },
+
+  async updateGoogleToken(telegramId: number, token: any): Promise<void> {
+    const query = `
+      UPDATE users
+      SET google_token = $1
+      WHERE telegram_id = $2
+    `;
+    await pool.query(query, [token, telegramId]);
+  }
 };
