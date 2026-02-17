@@ -1,5 +1,5 @@
 import { Context } from "telegraf";
-import { userService } from "../services/userServices.js";
+import { userService } from "../services/userService.js";
 import { logger } from "../utils/loggerUtils.js";
 import type { IUser } from "../types/userInterface.js";
 
