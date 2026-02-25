@@ -44,11 +44,20 @@ export const calendarSyncService = {
       );
       logger.info(`Fetched ${events.length} events from calendar ${cal.title} for user ${telegramId}`);
 
-      for(const event of events) {
-        await this.saveEventToDb(event,cal.id,userId);
-        totalSynced++;
+
+      for (const event of events) {
+          logger.info(`Saving event: ${event.summary || 'No title'} (${event.id})`);
+
+          try {
+            await this.saveEventToDb(event, cal.id, userId); 
+            logger.info(`Event saved successfully: ${event.id}`);
+            totalSynced++;
+          } catch (error) {
+            logger.error(`Failed to save event ${event.id}:`, error);
+          }
+        }
       }
-    }
+
     logger.info(`Sync completed for user ${telegramId}: ${totalSynced} events synced from ${calendarsResult.rows.length} calendars`);
     return { 
       synced: totalSynced, 
@@ -110,7 +119,7 @@ export const calendarSyncService = {
   return { cleanTitle, deadline };
 },
 
-  async getCategoryByCalendarName(calendarTitle: string, userId: number): Promise<string | null> {
+  async getCategoryByCalendarName(calendarTitle: string, userId: string): Promise<string | null> {
   const mapping: { [key: string]: string } = {
     'work': 'Работа',
     'работа': 'Работа',
@@ -167,7 +176,7 @@ return null;
 
 },
 
-async saveEventToDb(event: any, calendarDbId: string, userId: number) {
+async saveEventToDb(event: any, calendarDbId: string, userId: string) {
   try {
     const { cleanTitle, deadline } = this.parseDeadlineFromTitle(event.summary || 'Без названия');
     
@@ -228,6 +237,7 @@ await pool.query(query, [
 ]);
   } catch (error) {
     logger.error(`Failed to save event ${event.id} to DB for user ${userId}`, error);
+    throw error;
   }
 },
 }

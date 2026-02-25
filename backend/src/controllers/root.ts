@@ -7,6 +7,7 @@ export const setupControllers = (bot: Telegraf) => {
   bot.command('connect', authController.connectGoogle);
   bot.command('status', authController.checkConnection);
 
+
   bot.action('connect_google', authController.connectGoogle);
 
 }
